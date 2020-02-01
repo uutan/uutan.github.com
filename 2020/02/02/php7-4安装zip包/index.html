@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    
+    <title>php7.4安装zip包 | 有趣谈</title>
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1, maximum-scale=1"
+    />
+    <meta name="description" content="如果你在开发用到了导入导出功能。那么肯定绕不开 zip 扩展。安装这个蛮简单，但我也走了弯路。记录一下方便下次操作。php 导入 excel 解析提示 Fatal error: Class ‘ZipArchive’ not found，适用于本文章。 安装 zip 包之前，需要安装它的依赖，libzip. 通过libzip找到最新下载地址。当前操作我需要下载的地址为：https:&#x2F;&#x2F;libzip.">
+<meta property="og:type" content="article">
+<meta property="og:title" content="php7.4安装zip包">
+<meta property="og:url" content="http://uutan.github.io/2020/02/02/php7-4%E5%AE%89%E8%A3%85zip%E5%8C%85/index.html">
+<meta property="og:site_name" content="有趣谈">
+<meta property="og:description" content="如果你在开发用到了导入导出功能。那么肯定绕不开 zip 扩展。安装这个蛮简单，但我也走了弯路。记录一下方便下次操作。php 导入 excel 解析提示 Fatal error: Class ‘ZipArchive’ not found，适用于本文章。 安装 zip 包之前，需要安装它的依赖，libzip. 通过libzip找到最新下载地址。当前操作我需要下载的地址为：https:&#x2F;&#x2F;libzip.">
+<meta property="og:locale" content="en_US">
+<meta property="article:published_time" content="2020-02-01T22:59:31.000Z">
+<meta property="article:modified_time" content="2020-02-01T23:09:36.606Z">
+<meta property="article:author" content="UUTAN">
+<meta property="article:tag" content="php">
+<meta name="twitter:card" content="summary"> 
+    <link
+      rel="stylesheet"
+      href="//cdn.bootcss.com/highlight.js/9.2.0/styles/github.min.css"
+    />
+    <script src="//cdn.bootcss.com/highlight.js/9.2.0/highlight.min.js"></script>
+    <script>
+      document.addEventListener('DOMContentLoaded', event => {
+        document.querySelectorAll('pre code').forEach(block => {
+          hljs.highlightBlock(block)
+        })
+      })
+    </script>
+    
+<link rel="stylesheet" href="/css/index.css">
+
+  <meta name="generator" content="Hexo 4.2.0"></head>
+</html>
+
+<body style="
+
+
+  background-color: #eff0f6
+
+">
+  <div id="container">
+    <nav id="nav">
+  <header class="header">
+    <a href="/" class="title">有趣谈</a>
+  </header>
+  <div class="ctnWrap">
+    <div class="icons">
+        
+      <a
+        href="https://github.com/uutan"
+        target="_blank"
+        class="nav-icn iconfont icon-github"
+      ></a>
+        
+    </div>
+    <div class="menu">
+       
+      <a
+        href="/"
+        class="nav-menu "
+        >首页</a
+      >
+       
+      <a
+        href="/archives"
+        class="nav-menu "
+        >归档</a
+      >
+       
+      <a
+        href="/about"
+        class="nav-menu "
+        >关于我</a
+      >
+        
+    </div>
+  </div>
+</nav>
+
+    <div id="main"><section class="article">
+  <h2 class="title">php7.4安装zip包</h2>
+  <p class="sub">Feb 2, 2020</p>
+  <article class="content">
+    <p>如果你在开发用到了导入导出功能。那么肯定绕不开 zip 扩展。安装这个蛮简单，但我也走了弯路。记录一下方便下次操作。<br>php 导入 excel 解析提示 Fatal error: Class ‘ZipArchive’ not found，适用于本文章。</p>
+<p>安装 zip 包之前，需要安装它的依赖，libzip. 通过<a href="https://libzip.org/download/" target="_blank" rel="noopener">libzip</a>找到最新下载地址。当前操作我需要下载的地址为：<a href="https://libzip.org/download/libzip-1.6.0.tar.gz" target="_blank" rel="noopener">https://libzip.org/download/libzip-1.6.0.tar.gz</a></p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">wget https://libzip.org/download/libzip-1.6.0.tar.gz</span><br><span class="line">tar -zxvf libzip-1.6.0.tar.gz</span><br><span class="line"><span class="built_in">cd</span> libzip-1.6.0</span><br><span class="line">make &amp;&amp; make install</span><br></pre></td></tr></table></figure>
+
+<p>然后安装 php 的 zip 包。下载地址 [zip](wget <a href="http://pecl.php.net/get/zip" target="_blank" rel="noopener">http://pecl.php.net/get/zip</a>)</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">wget wget http://pecl.php.net/get/zip</span><br><span class="line">tar -zxvf zip</span><br><span class="line">/usr/<span class="built_in">local</span>/php/bin/phpize</span><br><span class="line">./configure --with-php-config=/usr/<span class="built_in">local</span>/php/bin/php-config</span><br><span class="line">make</span><br><span class="line">make install</span><br></pre></td></tr></table></figure>
+
+<p>然后到 php 的扩展包里找找有没有生成 zip.so。生成后将 zip.so 挂到 php.d 里面即可。</p>
+
+  </article>
+  <footer class="f-cf">
+     
+    <a href="/2020/02/01/2019-nCoV/" class="link f-fr"
+      >2019-nCoV⟶</a
+    >
+    
+  </footer>
+</section>
+</div>
+    <footer id="footer" class="f-cf">
+  uutan@qq.com
+  
+    
+      
+        · <a href="https://github.com/uutan" target="_blank" class="nav-icn">GitHub</a>
+      
+    
+  
+  <span class="copyright">All rights reserved</span>
+</footer>
+  </div>
+</body>
+</html>
